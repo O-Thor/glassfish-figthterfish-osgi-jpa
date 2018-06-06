@@ -1,0 +1,38 @@
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+               jaxb:extensionBindingPrefixes="xjc"
+               jaxb:version="2.1">
+    
+    <jaxb:globalBindings localScoping="toplevel">
+        <jaxb:serializable uid="1" />
+    </jaxb:globalBindings>
+    
+    <jaxb:bindings schemaLocation="persistence_2_1.xsd" node="/xs:schema">                    
+        <jaxb:bindings node="//xs:element[@name='persistence']/xs:complexType">
+            <jaxb:class name="PersistenceXml"/>                                                               
+        </jaxb:bindings>                      
+        <jaxb:bindings node="//xs:element[@name='persistence-unit']/xs:complexType">
+            <jaxb:class name="PersistenceUnitXml"/>    
+                
+        </jaxb:bindings>          
+        <jaxb:bindings node="//xs:element[@name='properties']/xs:complexType">
+            <jaxb:class name="PropertiesXml"/>              
+            <jaxb:baseType name="java.util.Properties">
+<!--                <xjc:javaType name="java.util.Properties" xmlType="xs:properties-type" adapter="org.glassfish.fighterfish.jpaservice.xml.JAXBPropertiesAdapter"/>                                                                                              -->
+            </jaxb:baseType>
+        </jaxb:bindings>        
+        <jaxb:bindings node="//xs:element[@name='property']/xs:complexType">
+            <jaxb:class name="PropertyXml"/>                    
+        </jaxb:bindings>            
+        <jaxb:bindings node="xs:simpleType[@name='persistence-unit-transaction-type']">
+            <jaxb:typesafeEnumClass ref="javax.persistence.spi.PersistenceUnitTransactionType"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:simpleType[@name='persistence-unit-caching-type']">
+            <jaxb:typesafeEnumClass ref="javax.persistence.SharedCacheMode"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="xs:simpleType[@name='persistence-unit-validation-mode-type']">
+            <jaxb:typesafeEnumClass ref="javax.persistence.ValidationMode"/>
+        </jaxb:bindings>       
+    </jaxb:bindings>      
+</jaxb:bindings> 
